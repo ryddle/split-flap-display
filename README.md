@@ -29,8 +29,10 @@ Code is divided into two classes and one CSS file:
     * `endText`: string (optional) - final text
     * `loop`: boolean (optional) - if loop or not
     * `size`: number (optional) - the number of elements of the display
+    * `changeTime`: number: set the time in miliseconds between automatic text change (by default 3000ms)
 * `noloop`: just show a text but don't change.
 * `setText`: change from current text to new text.
-* `setSize` (in constructor): sets the number of elements in the display. By default, the max size between `beginStr` and `endStr`.
+* `size` (in constructor): sets the number of elements in the display. By default, the max size between `beginStr` and `endStr`.
 * `roll`: roll the text to left or right.
 * `setFlapsWidths`: by the moment, you can set the flap elements width globally for all instances.
+* `changeTime` (in constructor): set the time in miliseconds between automatic text change (by default 3000ms)

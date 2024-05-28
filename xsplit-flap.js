@@ -2,20 +2,24 @@ class splitFlap {
     // And even more ///////////////////////////////////////////
     #chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
         'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-        'Y', 'Z', ' ', ':', '.', '-', '_', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
-    constructor(parent, beginText, endText, loop, size) {
-        this.speed = .01; // seconds
-        this.loop = loop != null ? loop : true;
-        this.beginStr = beginText ? beginText.toUpperCase().split("") : [5].fill(" ");
-        this.endStr = endText ? endText.toUpperCase().split("") : [5].fill(" ");
+        'Y', 'Z', ' ', ':', '.', '-', '_', '/', '♥', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    constructor(options) {
+        if(!options){
+            options = {};
+        };
+        this.speed = .008; // seconds
+        this.changeTime = options.changeTime != null ? options.changeTime : 3000;
+        this.loop = options.loop != null ? options.loop : true;
+        this.beginStr = options.beginText ? options.beginText.toUpperCase().split("") : [5].fill(" ");
+        this.endStr = options.endText ? options.endText.toUpperCase().split("") : [5].fill(" ");
         // A-Z, 0-9, spaces only
-        this.amountOfFlaps = (size != null) ? size : (this.beginStr.length >= this.endStr.length) ? this.beginStr.length : this.endStr.length;
+        this.amountOfFlaps = (options.size != null) ? options.size : (this.beginStr.length >= this.endStr.length) ? this.beginStr.length : this.endStr.length;
         this.flaps = [this.amountOfFlaps];
         this.div = document.createElement("div");
         this.div.style.display = 'flex';
         this.div.style.justifyContent = 'center';
-        if (parent != null) {
-            this.parent = parent;
+        if (options.parent != null) {
+            this.parent = options.parent;
         } else {
             this.parent = document.body;
         }
@@ -32,14 +36,10 @@ class splitFlap {
         for (var x = 0; x < this.amountOfFlaps; x++) {
 
             if (this.beginStr.length < this.amountOfFlaps) {
-                for (var x = 0; x < this.amountOfFlaps - this.beginStr.length; x++) {
-                    this.beginStr.push(" ");
-                }
+                this.beginStr=this.beginStr.concat(new Array(this.amountOfFlaps - this.beginStr.length).fill(" "));
             }
             else if (this.endStr.length < this.amountOfFlaps) {
-                for (var x = 0; x < this.amountOfFlaps - this.endStr.length; x++) {
-                    this.endStr.push(" ");
-                }
+                this.endStr=this.endStr.concat(new Array(this.amountOfFlaps - this.endStr.length).fill(" "));
             }
         }
         for (var x = 0; x < this.amountOfFlaps; x++) {
@@ -66,7 +66,7 @@ class splitFlap {
             }) && this.flag2) {
                 if (this.loop) {
                     this.flag2 = false;
-                    setTimeout(this.changeText.bind(this), 3000);
+                    setTimeout(this.changeText.bind(this), this.changeTime);
                 }
             }
         }
@@ -97,13 +97,14 @@ class splitFlap {
         setTimeout(this.changeText.bind(this), 3000);
     }
 
-    roll(dir) {
+    roll(dir, time) {
+        this.rollTime = time || 1000;
         if (dir == "right") {
             this.endStr.push(" ");
-            this.rollInterval = setInterval(this.rollRight.bind(this), 1000);
+            this.rollInterval = setInterval(this.rollRight.bind(this), this.rollTime);
         } else {
             this.endStr.push(" ");
-            this.rollInterval = setInterval(this.rollLeft.bind(this), 1000);
+            this.rollInterval = setInterval(this.rollLeft.bind(this), this.rollTime);
         }
     }
 
@@ -138,7 +139,11 @@ class splitFlap {
 class splitFlapElm {
     #chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
         'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
-        'Y', 'Z', ' ', ':', '.', '-', '_', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+        'Y', 'Z', ' ', ':', '.', '-', '_', '/', '♥', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+    static chars = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',
+        'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+        'Y', 'Z', ' ', ':', '.', '-', '_', '/', '♥', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
     constructor(speed) {
         this.speed = speed || 0.2; // seconds
@@ -209,8 +214,8 @@ class splitFlapElm {
         this.a2.innerHTML = this.#chars[(this.strCount == 0) ? this.#chars.length - 1 : this.strCount - 1];
     }
 
-    getChars() {
-        return this.#chars.copyWithin(0, 0, this.#chars.length - 1);
+    static getChars() {
+        return this.chars;
     }
 
     getA1Val() {
