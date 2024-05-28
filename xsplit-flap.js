@@ -78,6 +78,11 @@ class splitFlap {
         r.style.setProperty('--flapWidth', width + 'px');
     }
 
+    setFlapsTextColor(color) {
+        var r = document.querySelector(':root');
+        r.style.setProperty('--flapTextColor', color);
+    }
+
     setText(text) {
         this.beginStr = this.endStr;
         this.endStr = text.toUpperCase().split("");

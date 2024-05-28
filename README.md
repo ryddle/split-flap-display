@@ -36,3 +36,4 @@ Code is divided into two classes and one CSS file:
 * `roll`: roll the text to left or right.
 * `setFlapsWidths`: by the moment, you can set the flap elements width globally for all instances.
 * `changeTime` (in constructor): set the time in miliseconds between automatic text change (by default 3000ms)
+* `setFlapsTextColor`: by the moment, you can set the flap text color globally for all instances.

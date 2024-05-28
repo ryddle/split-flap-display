@@ -18,6 +18,8 @@
         </div>
     </a>
     <input type="number" id="flapwidth" value="50"><button onclick="setFlapsWidth(document.getElementById('flapwidth').value)">Set Flap Width</button>
+    <br>
+    <input type="color" id="flaptextcolor" value="50"><button onclick="setFlapsTextColor(document.getElementById('flaptextcolor').value)">Set Flap Text Color</button>
     <div class="center">
     </div>
 </body>
@@ -56,7 +58,7 @@
 
     function getTimeStr() {
         var d = new Date();
-        var h = d.getHours();
+        var h = d.getHours().toString().padStart(2, '0');
         var m = d.getMinutes().toString().padStart(2, '0');
         var s = d.getSeconds().toString().padStart(2, '0');
         return `${h}:${m}:${s}`;
@@ -64,7 +66,9 @@
 
     function setFlapsWidth(width) {
         splitflap.setFlapsWidth(width);
-        splitflap2.setFlapsWidth(width);
-        splitflap3.setFlapsWidth(width);
+    };
+
+    function setFlapsTextColor(color) {
+        splitflap.setFlapsTextColor(color);
     };
 </script>

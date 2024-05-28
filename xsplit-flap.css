@@ -1,5 +1,6 @@
 :root {
     --flapWidth: 40px;
+    --flapTextColor: #FFEB3B;
 }
 
 .splitflap {
@@ -11,7 +12,7 @@
     font-size: var(--flapWidth);
     font-family: monospace;
     text-align: center;
-    color: #FFEB3B;
+    color: var(--flapTextColor, #FFEB3B);
 }
 
 .top {
