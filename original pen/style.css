@@ -1,0 +1,133 @@
+body {
+  background-color: #FCF8E1;
+}
+
+.splitflap {
+  position: relative;
+  min-width: 50px;
+  height: 75px;
+  line-height: 84px;
+  margin: 2px;
+  font-size: 60px;
+  font-family: Avenir Next Condensed;
+  text-align: center;
+  color: white;
+}
+
+.center {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  margin-top: -50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.top {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  background-color: #000000;
+  border-radius: 10px 10px 0 0;
+  border-bottom: 1px solid black;
+  overflow: hidden;
+  z-index: 0;
+}
+
+div {
+  perspective: 500px;
+}
+
+.bottom {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  margin-top: -75%;
+  border-radius: 10px 10px 10px 10px;
+  z-index: -1;
+  background-color: black;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), #000000);
+  transform-origin: center;
+}
+
+.bottom:after {
+    content:"";
+  background-image: -webkit-linear-gradient(0deg, white 7%, black 7%, black 93%, white 93%, white 100%);
+    display: block;
+    height: 1px;
+    width: 100%;
+    position: absolute;
+    top: 50%;
+}
+
+.nextHalf {
+  position: relative;
+  height: 50%;
+  width: 100%;
+  margin-top: -150%;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+  z-index: 2;
+  background-color: black;
+  background-image: linear-gradient(#000000, rgba(0, 0, 0, 0));
+  transform-origin: bottom;
+}
+
+.nextHalf:after {
+    content:"";
+  background-image: -webkit-linear-gradient(0deg, white 7%, black 7%, black 93%, white 93%, white 100%);
+    display: block;
+    height: 2px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+.nextFull {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: #000000;
+  margin-top: -75%;
+  border-radius: 10px 10px 10px 10px;
+  z-index: -3;
+}
+
+
+.flip1 {
+  animation: flip1 ease-in 1;
+  animation-duration: 1s;
+}
+
+.flip2 {
+  animation: flip2 ease-out 1;
+  animation-duration: 1s;
+}
+
+@keyframes flip1 {
+  0% {
+    transform: rotateX(0deg);
+    background-color: #000000;
+  }
+  50% {
+    transform: rotateX(90deg);
+    background-color: black;
+  }
+  100% {
+    transform: rotateX(90deg);
+  }
+}
+
+@keyframes flip2 {
+  0% {
+    transform: rotateX(-90deg);
+  }
+  50% {
+    transform: rotateX(-90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+    background-color: #000000;
+  }
+}

@@ -1,0 +1,61 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Split Flap Display</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./xsplit-flap.css">
+</head>
+
+<body>
+    <input type="number" id="flapwidth" value="50"><button onclick="setFlapsWidth(document.getElementById('flapwidth').value)">Set Flap Width</button>
+    <div class="center">
+    </div>
+</body>
+
+</html>
+<script src="./xsplit-flap.js"></script>
+<script>
+    var osplitFlap;
+    var osplitFlap2;
+    var splitflap;
+    var splitflap2;
+    var splitflap3;
+    (function () {
+        osplitFlap = new splitFlap(null, "PARIS", "HANOI");
+        osplitFlap2 = new splitFlap(null, "AMSTERDAM", "NEW YORK");
+        splitflap = new splitFlap(document.querySelector(".center"), null, "00:00:00", false, 20);
+
+        setInterval(() => {
+            splitflap.setText(getTimeStr());
+        }, 1000);
+
+        splitflap2 = new splitFlap(null, null, "NightWish - DarkChest of wonders", false, 20);
+        splitflap2.roll("left");
+
+        splitflap3 = new splitFlap(null, null, "NightWish - DarkChest of wonders", false, 20);
+        splitflap3.roll("right");
+
+    })();
+
+    function getTimeMinSecStr() {
+        var d = new Date();
+        var m = d.getMinutes().toString().padStart(2, '0');
+        var s = d.getSeconds().toString().padStart(2, '0');
+        return `${m}:${s}`;
+    }
+
+    function getTimeStr() {
+        var d = new Date();
+        var h = d.getHours();
+        var m = d.getMinutes().toString().padStart(2, '0');
+        var s = d.getSeconds().toString().padStart(2, '0');
+        return `${h}:${m}:${s}`;
+    }
+
+    function setFlapsWidth(width) {
+        splitflap.setFlapsWidth(width);
+        splitflap2.setFlapsWidth(width);
+        splitflap3.setFlapsWidth(width);
+    };
+</script>
