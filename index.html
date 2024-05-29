@@ -17,11 +17,14 @@
             </svg>
         </div>
     </a>
-    <input type="number" id="flapwidth" value="50"><button onclick="setFlapsWidth(document.getElementById('flapwidth').value)">Set Flap Width</button>
-    <br>
-    <input type="color" id="flaptextcolor" value="50"><button onclick="setFlapsTextColor(document.getElementById('flaptextcolor').value)">Set Flap Text Color</button>
-    <div class="center">
-    </div>
+    
+    <input type="number" id="flapwidth" value="50" style="width: 50px;height: 25px;margin-right: 5px;">
+    <button onclick="setFlapsWidth(document.getElementById('flapwidth').value)" style="vertical-align: bottom;width: 130px;text-align: left;height: 25px;">Set Flap Width</button>
+    <br><br>
+    <input type="color" id="flaptextcolor" value="#FFEB3B" style="margin-right: 5px;">
+    <button onclick="setFlapsTextColor(document.getElementById('flaptextcolor').value)" style="width: 130px;text-align: left;height: 27px;vertical-align: bottom;">Set Flap Text Color</button>
+
+    <div class="center"></div>
 </body>
 
 </html>
